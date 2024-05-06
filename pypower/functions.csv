@@ -1,0 +1,22 @@
+﻿name of Test,Package,Function,adj
+One Mean T-test,pwr,pwr.t.test,
+Two Means T-test,pwr,pwr.t.test,
+Paired T-test,pwr,pwr.t.test,
+One-way ANOVA,pwr,pwr.anova.test,
+Single Proportion Test,pwr,pwr.p.test,
+Two Proportions Test,pwrr,pwr.2p.test,
+Chi-Squared Test,pwr,pwr.chisq.test,
+Simple Linear Regression,pwr,pwr.f2.test,
+Multiple Linear Regression,pwr,pwr.f2.test,
+Correlation,pwr,pwr.r.test,
+One Mean Wilcoxon Test,pwr,pwer.t.test,0.15
+Mann-Whitney Test,pwr,pwer.t.test,0.15
+Paired wilcoxon Test,pwr,pwer.t.test,0.15
+Kruskal Wallace Test,pwr,pwr.anova.test,0.15
+Repeated Measures ANOVA,WebPower,wp.rmanova,
+Multi-way ANOVA (1 Category ofinterest),WebPower,wp.kanova,
+Multi-way ANOVA (>1 Category of interest),WebPower,wp.kanova,
+Non-Parametric Regression (Logistic),WebPower,wp.logistic,
+Non-Parametric Regression (Poisson),WebPower,wp.poisson,
+Multilevel modeling: CRT,WebPower,wp.crt2arm/wp.crt3arm,
+Multilevel modeling: MRT,WebPower,wp.mrt2arm/wp.mrt3arm,
