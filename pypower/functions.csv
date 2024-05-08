@@ -1,22 +1,24 @@
-﻿name of Test,Package,Function,adj
-One Mean T-test,pwr,pwr.t.test,
-Two Means T-test,pwr,pwr.t.test,
-Paired T-test,pwr,pwr.t.test,
-One-way ANOVA,pwr,pwr.anova.test,
-Single Proportion Test,pwr,pwr.p.test,
-Two Proportions Test,pwrr,pwr.2p.test,
-Chi-Squared Test,pwr,pwr.chisq.test,
-Simple Linear Regression,pwr,pwr.f2.test,
-Multiple Linear Regression,pwr,pwr.f2.test,
-Correlation,pwr,pwr.r.test,
-One Mean Wilcoxon Test,pwr,pwer.t.test,0.15
-Mann-Whitney Test,pwr,pwer.t.test,0.15
-Paired wilcoxon Test,pwr,pwer.t.test,0.15
-Kruskal Wallace Test,pwr,pwr.anova.test,0.15
-Repeated Measures ANOVA,WebPower,wp.rmanova,
-Multi-way ANOVA (1 Category ofinterest),WebPower,wp.kanova,
-Multi-way ANOVA (>1 Category of interest),WebPower,wp.kanova,
-Non-Parametric Regression (Logistic),WebPower,wp.logistic,
-Non-Parametric Regression (Poisson),WebPower,wp.poisson,
-Multilevel modeling: CRT,WebPower,wp.crt2arm/wp.crt3arm,
-Multilevel modeling: MRT,WebPower,wp.mrt2arm/wp.mrt3arm,
+﻿name of Test,Package,Function,adj,effctName,xname,xmin,xmax,xstep,sampleSizeName
+One Mean T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
+Two Means T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
+Paired T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
+One-way ANOVA,pwr,pwr.anova.test,,f,f,0.01,0.99,0.01,n
+Single Proportion Test,pwr,pwr.p.test,,h,h,0.01,0.99,0.01,n
+Two Proportions Test,pwrr,pwr.2p.test,,h,h,0.01,0.99,0.01,n
+Chi-Squared Test,pwr,pwr.chisq.test,,w,w,0.01,0.99,0.01,n
+Simple Linear Regression,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n
+Multiple Linear Regression,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n
+Correlation,pwr,pwr.r.test,,r,r,0.01,0.99,0.01,n
+One Mean Wilcoxon Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
+Mann-Whitney Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
+Paired wilcoxon Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
+Kruskal Wallace Test,pwr,pwr.anova.test,0.15,f,f,0.01,0.99,0.01,n
+Repeated Measures ANOVA,WebPower,wp.rmanova,,f,f,0.01,0.99,0.01,n
+Multi-way ANOVA (1 Category ofinterest),WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n
+Multi-way ANOVA (>1 Category of interest),WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n
+Non-Parametric Regression (Logistic),WebPower,wp.logistic,,p1,p1,0.01,0.99,0.01,n
+Non-Parametric Regression (Poisson),WebPower,wp.poisson,,exp1,exp1,0.01,0.99,0.01,n
+Multilevel modeling: CRT(2arm),WebPower,wp.crt2arm,,f,f,0.01,0.99,0.01,n
+Multilevel modeling: CRT(3arm),WebPower,wp.crt3arm,,f,f,0.01,0.99,0.01,n
+Multilevel modeling: MRT(2arm),WebPower,wp.mrt2arm,,f,f,0.01,0.99,0.01,n
+Multilevel modeling: MRT(3arm),WebPower,wp.mrt3arm,,f2,f2,0.01,0.99,0.01,n
