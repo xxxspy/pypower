@@ -1,24 +1,27 @@
-﻿name of Test,Package,Function,adj,effctName,xname,xmin,xmax,xstep,sampleSizeName
-One Mean T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
-Two Means T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
-Paired T-test,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n
-One-way ANOVA,pwr,pwr.anova.test,,f,f,0.01,0.99,0.01,n
-Single Proportion Test,pwr,pwr.p.test,,h,h,0.01,0.99,0.01,n
-Two Proportions Test,pwrr,pwr.2p.test,,h,h,0.01,0.99,0.01,n
-Chi-Squared Test,pwr,pwr.chisq.test,,w,w,0.01,0.99,0.01,n
-Simple Linear Regression,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n
-Multiple Linear Regression,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n
-Correlation,pwr,pwr.r.test,,r,r,0.01,0.99,0.01,n
-One Mean Wilcoxon Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
-Mann-Whitney Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
-Paired wilcoxon Test,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n
-Kruskal Wallace Test,pwr,pwr.anova.test,0.15,f,f,0.01,0.99,0.01,n
-Repeated Measures ANOVA,WebPower,wp.rmanova,,f,f,0.01,0.99,0.01,n
-Multi-way ANOVA (1 Category ofinterest),WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n
-Multi-way ANOVA (>1 Category of interest),WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n
-Non-Parametric Regression (Logistic),WebPower,wp.logistic,,p1,p1,0.01,0.99,0.01,n
-Non-Parametric Regression (Poisson),WebPower,wp.poisson,,exp1,exp1,0.01,0.99,0.01,n
-Multilevel modeling: CRT(2arm),WebPower,wp.crt2arm,,f,f,0.01,0.99,0.01,n
-Multilevel modeling: CRT(3arm),WebPower,wp.crt3arm,,f,f,0.01,0.99,0.01,n
-Multilevel modeling: MRT(2arm),WebPower,wp.mrt2arm,,f,f,0.01,0.99,0.01,n
-Multilevel modeling: MRT(3arm),WebPower,wp.mrt3arm,,f2,f2,0.01,0.99,0.01,n
+﻿testname,cnName,Package,Function,adj,effctName,xname,xmin,xmax,xstep,sampleSizeName,description
+One Mean T-test,单样本T检验,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n,One Mean T-test 是一种统计假设检验方法，用于检验一个样本的均值是否显著不同于某个已知的或假设的均值。它基于t分布来计算样本均值与假设均值之间的差异，并据此判断是否存在显著差异。
+Two Means T-test,独立样本T检验,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n,Two Means T-test 是一种统计假设检验方法，用于比较两个独立样本的均值是否存在显著差异。它基于t分布来计算两个样本均值之间的差异，并考虑样本的方差和大小。如果两个样本的均值差异大于预期由于随机误差而产生的差异，那么我们就拒绝零假设（即两个样本的均值相同），并认为这两个样本来自具有不同均值的总体。
+Paired T-test,配对样本T检验,pwr,pwr.t.test,,d,d,0.01,0.99,0.01,n,Paired T-test 是一种统计假设检验方法，用于比较来自同一总体的两个成对观测值（如一个人在不同时间或条件下的两次测量）的均值是否存在显著差异。这种方法考虑了成对数据之间的相关性，通过计算每对数据差异的均值，并使用t分布来检验这些差异是否显著不为零。如果差异显著，则表明两个观测值之间存在显著差异。
+One-way ANOVA,单因素方差分析,pwr,pwr.anova.test,,f,f,0.01,0.99,0.01,n,One-way ANOVA，即单因素方差分析，是一种用于比较三个或更多独立总体的均值的统计方法。它旨在检验每个组的平均数是否相等，通过比较各组的方差来实现。One-way ANOVA通常用于确定实验条件对结果的影响，并检验不同样本之间的均值是否存在显著性差异。
+Single Proportion Test,单样本百分比,pwr,pwr.p.test,,h,h,0.01,0.99,0.01,n,这个测试用于当你只有一个比例时，想要知道某些值的比例是否与某个常数比例有所不同。简单来说，就是检验观测到的比例是否与预期或理论上的比例存在差异。
+Two Proportions Test,独立样本百分比,pwrr,pwr.2p.test,,h,h,0.01,0.99,0.01,n,当你有两个百分比或者比率时，你想要检验两个百分比是否有显著差异
+Chi-Squared Test,卡方检验,pwr,pwr.chisq.test,,w,w,0.01,0.99,0.01,n,卡方检验（Chi-square test）是比例检验的一种扩展，它用于检验观察到的值（通常是频数）是否与预期的值（通常是基于某种理论或假设的期望频数）有显著差异。它也被称为拟合优度检验（Goodness-of-fit test）
+Simple Linear Regression,一元线性回归,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n,简单线性回归（Simple Linear Regression）又称为一元线性回归，是一种统计分析方法，用于研究一个因变量和一个自变量之间的线性关系。具体来说，它通过拟合一个线性函数或公式来描述自变量（x）与因变量（y）之间的关系。这个线性模型通常表示为 y = a*x + b，其中a是斜率，b是截距。它表示的含义是，当自变量x每增加一个单位时，因变量y平均增加a个单位。
+Multiple Linear Regression,多元线性回归,pwr,pwr.f2.test,,f2,f2,0.01,0.99,0.01,n,多重线性回归（Multiple Linear Regression）是简单直线回归的推广，用于研究一个因变量与多个自变量之间的数量依存关系。这种方法通过建立一个线性模型，将多个自变量的值与因变量的值进行拟合，从而帮助我们理解各个自变量对因变量的相对贡献以及它们之间的相互作用。
+Correlation,相关分析,pwr,pwr.r.test,,r,r,0.01,0.99,0.01,n,相关分析是研究两个或两个以上处于同等地位的随机变量间的相关关系的统计分析方法。它侧重于发现随机变量间的种种相关特性，可以描述客观事物相互间关系的密切程度，并用适当的统计指标表示出来。例如，人的身高和体重之间、空气中的相对湿度与降雨量之间的相关关系都是相关分析研究的问题。
+One Mean Wilcoxon Test,单样本秩和检验,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n,"“One Mean Wilcoxon Test”在统计学中指的是“单样本Wilcoxon符号秩检验”（或称为“单样本Wilcoxon秩和检验”）。
+
+这种检验方法主要用于确定一个数值变量（或称为观察值、分数等）的样本中位数是否与一个已知的特定值（例如，理论中位数、假设的中位数等）有显著差异。与参数检验中的单样本t检验类似，但Wilcoxon符号秩检验是非参数的，不需要假设数据来自正态分布，也不要求数据具有相同的方差。
+"
+Mann-Whitney Test,曼-惠特尼秩和检验,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n,·Paired Wilcoxon Test的中文意思是配对Wilcoxon符号秩检验。这是一种非参数检验方法，用于比较两个配对样本的中位数是否存在差异。在R语言中，可以使用带有paired参数的wilcox.test函数进行这种检验。这种检验基于样本差值的秩次排列，而非平均值。
+Paired wilcoxon Test,配对Wilcoxon符号秩检验,pwr,pwer.t.test,0.15,d,d,0.01,0.99,0.01,n,Kruskal-Wallis Test的中文意思是克鲁斯卡尔-沃利斯检验，也被称为K-W检验或H检验。它是一种非参数检验方法，用于检验两个以上独立样本是否来自同一个概率分布。与参数检验中的单因素方差分析类似，但克鲁斯卡尔-沃利斯检验不假设样本来自正态分布，也不要求各组样本的方差相等。它的原假设是各样本服从的概率分布具有相同的中位数，如果拒绝原假设，则意味着至少有一个样本的概率分布的中位数与其他样本不同。
+Kruskal Wallace Test,K-W检验,pwr,pwr.anova.test,0.15,f,f,0.01,0.99,0.01,n,Repeated Measures ANOVA的中文意思是重复测量方差分析。它是一种统计方法，主要用于分析在相同实验单位上进行的多次观测之间的差异。这种方法可以研究时间、条件或处理对实验单位的影响，并考虑实验单位内的差异，以更准确地检测因素的作用。它在医学、临床和流行病学研究中比较常见，用于分析测量指标随时间变化而产生的变化特点。
+Repeated Measures ANOVA,重复测量方差分析,WebPower,wp.rmanova,,f,f,0.01,0.99,0.01,n,重复测量方差分析是一种统计技术，用于分析同一因变量在不同时间点或条件下对同一受试对象进行重复测量时获得的数据，以研究处理因素随时间或条件的变化趋势。
+Multi-way ANOVA (1 Category ofinterest),多因素方差分析（1个关注因素）,WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n,多个因素对因变量有影响，但是仅关注一个因素的影响是否显著
+Multi-way ANOVA (>1 Category of interest),多因素方差分析（超过1个关注因素）,WebPower,wp.kanova,,f,f,0.01,0.99,0.01,n,多个因素对因变量有影响，但是关注多个因素的影响是否显著
+Non-Parametric Regression (Logistic),逻辑回归,WebPower,wp.logistic,,p1,p1,0.01,0.99,0.01,n,该检验用于确定预测变量是否是二元结果的显著预测因子，无论是否包含其他协变量。它是一种非参数回归类型：数值变量不符合正态分布。在逻辑回归中，响应变量（Y）是二元的（0/1）。
+Non-Parametric Regression (Poisson),泊松回归,WebPower,wp.poisson,,exp1,exp1,0.01,0.99,0.01,n,泊松回归，用于检验预测变量在一段特定时期内是否影响事件的发生率，无论是否包含其他协变量。在非参数回归中，数值变量通常不符合正态分布。在泊松回归中，假设事件发生率内的各个事件是相互独立的。只要事件之间是独立的，每个主体可以发生多个事件。
+Multilevel modeling: CRT(2arm),多层建模（双臂）,WebPower,wp.crt2arm,,f,f,0.01,0.99,0.01,n,多级模型（也称为线性混合模型）被用于数据在层次结构中聚集，从而导致它们非独立的情况。集群随机试验（CRT）是多级设计的一种类型，其中整个集群被随机分配到对照组或一个或多个治疗组。这种设计允许在集群层面（如社区、学校或医院）进行干预分配，并考虑集群内部个体的变异性和相关性。“arm”通常指的是一个特定的治疗或干预组。
+Multilevel modeling: CRT(3arm),多层建模（三臂）,WebPower,wp.crt3arm,,f,f,0.01,0.99,0.01,n,多级模型（也称为线性混合模型）被用于数据在层次结构中聚集，从而导致它们非独立的情况。集群随机试验（CRT）是多级设计的一种类型，其中整个集群被随机分配到对照组或一个或多个治疗组。这种设计允许在集群层面（如社区、学校或医院）进行干预分配，并考虑集群内部个体的变异性和相关性。“arm”通常指的是一个特定的治疗或干预组。例如，在一个三臂（3-arm）的CRT中，集群可能被随机分配到三个不同的组中：一个对照组（control arm）和两个治疗组（treatment arms）。每个治疗组可能接受不同的干预措施，而对照组则可能不接受任何特殊干预或接受标准治疗。
+Multilevel modeling: MRT(2arm),多层建模（双臂）,WebPower,wp.mrt2arm,,f,f,0.01,0.99,0.01,n,当数据在层次结构中聚集，导致它们非独立时，会使用多级模型，也称为线性混合模型。多站点随机试验（MRT）是多级设计的一种类型，其中整个集群被随机分配到控制组或一个或多个治疗组，然后可以在两级层次线性模型中进行分析。这种设计可以进行三种类型的测试：（1）主要类型测试治疗的主要效应；（2）站点类型测试集群/站点均值的方差；（3）方差类型测试治疗效应的方差。这些测试有助于评估不同站点之间的变异性以及治疗效果的一致性和差异。“arm”通常指的是一个特定的治疗或干预组。
+Multilevel modeling: MRT(3arm),多层建模（三臂）,WebPower,wp.mrt3arm,,f2,f2,0.01,0.99,0.01,n,当数据在层次结构中聚集，导致它们非独立时，会使用多级模型，也称为线性混合模型。多站点随机试验（MRT）是多级设计的一种类型，其中整个集群被随机分配到控制组或一个或多个治疗组，然后可以在两级层次线性模型中进行分析。这种设计可以进行三种类型的测试：（1）主要类型测试治疗的主要效应；（2）站点类型测试集群/站点均值的方差；（3）方差类型测试治疗效应的方差。这些测试有助于评估不同站点之间的变异性以及治疗效果的一致性和差异。“arm”通常指的是一个特定的治疗或干预组。

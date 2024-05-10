@@ -1,10 +1,9 @@
 
 import os
 os.environ['R_HOME']=r'D:\Program Files\R\R-4.3.3'
-print(os.environ['R_HOME'])
+
 from rpy2.robjects.packages import importr
-pwr = importr("pwr")
-webpower = importr("WebPower")
+
 import pandas as pd
 from pathlib import Path
 HERE = Path(__file__).parent.absolute()
@@ -381,7 +380,7 @@ Parameters = {
 
 class PyPower:
     datafile = HERE / 'functions.csv'
-    TestNameCol = 'name of Test'
+    TestNameCol = 'testname'
     PackageCol = 'Package'
     FunctionCol = 'Function'
     AdjCol = 'adj'
@@ -412,6 +411,10 @@ class PyPower:
         for row in self.rows:
             config[row[self.TestNameCol]] = row
         return config
+    
+    def description(self, name: str)->str:
+        info = self.rows[name]
+        return info['description']
 
     def parameters(self, name: str):
         pk = self.name2package[name]
@@ -425,12 +428,7 @@ class PyPower:
         config = self.name2config[name]
         ssName = config['sampleSizeName']
         pdata = {}
-        if pk == 'pwr':
-            package = pwr
-        elif pk == 'WebPower':
-            package = webpower
-        else:
-            raise ValueError('Not support package name: ' + pk)
+        package = importr(pk)
         for meta in paramMeta:
             pname = meta['name']
             if pname in params:
