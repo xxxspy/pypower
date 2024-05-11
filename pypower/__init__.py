@@ -1,5 +1,6 @@
 
 import os
+import copy
 os.environ['R_HOME']=r'D:\Program Files\R\R-4.3.3'
 
 from rpy2.robjects.packages import importr
@@ -451,11 +452,36 @@ class PyPower:
             raise ValueError(f'There is no key named [{ssName}] in the result')    
         return ss    
     
-    def _plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
+    def plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
+        pdata = copy.copy(params)
+        maxLimit = xrange[1]
+        xvalue = xrange[0]
+        rows = []
+        with conversion.localconverter(default_converter):
+            while xvalue < maxLimit:
+                pdata[xname] = xvalue
+                xvalue += xstep
+                res = self._point_estimate(name, pdata, xname, yname)
+                rows.append(res)
+        return rows
+    
+    @cached_property
+    def packages(self)->dict:
+        return {
+            'pwr': importr('pwr'),
+            'WebPower': importr('WebPower'),
+        }
+        
+    def point_estimate(self, name: str, params: dict, xname:str, yname: str)->dict:
+        with conversion.localconverter(default_converter):
+            res = self._point_estimate(name, params, xname, yname)
+        return res
+    
+    def _point_estimate(self, name: str, params: dict, xname: str, yname: str)->dict:
         pk = self.name2package[name]
         funcName = self.name2function[name]
+        package = self.packages[pk]
         paramMeta = self.parameters(name)
-        package = importr(pk)
         pdata = {}
         for meta in paramMeta:
             pname = meta['name']
@@ -465,31 +491,19 @@ class PyPower:
                 pdata[pname] = params[pname]
                 if isinstance(pdata[pname], str) and meta['type'] == 'number':
                     pdata[pname] = float(pdata[pname])
-            elif pname in (xname, yname):
-                pass
             else:
-                assert 'default' in meta, ValueError(f'Lack of Parameter <{pname}>')
-                pdata[pname] = meta['default']
-            
+                if pname not in (xname, yname):
+                    assert 'default' in meta, ValueError(f'Lack of Parameter <{pname}>')
+                    pdata[pname] = meta['default']
+        res = {}
         func = getattr(package, funcName.replace('.', '_'))
-        maxLimit = xrange[1]
-        xvalue = xrange[0]
-        rows = []
+        r = func(**pdata)
+        for k, v in r.items():
+            res[k] = v[0]
+        print(res)
+        return res
+            
         
-        while xvalue < maxLimit:
-            pdata[xname] = xvalue
-            xvalue += xstep
-            print('pdata:', pdata)
-            r = func(**pdata)
-            res = {}
-            for k, v in r.items():
-                res[k] = v[0]
-            rows.append(res)
-        return rows
-    
-    def plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
-        with conversion.localconverter(default_converter):
-            return self._plotData(name, params, xname, yname, xrange, xstep)
 
     def plot(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01)->go.Figure:
         plotData = self.plotData(name, params, xname, yname, xrange, xstep)
