@@ -10,6 +10,7 @@ HERE = Path(__file__).parent.absolute()
 from typing import List
 from functools import cached_property
 import plotly.graph_objects as go
+from rpy2.robjects import conversion, default_converter
 
 
 
@@ -18,9 +19,9 @@ CommonParams = dict(
     siglevel = {
         'name': 'sig.level',
         'description': '显著性水平 (I型错误发生概率，常用0.05)',
+        'default': 0.05,
         'enum': [0.05, 0.01, 0.001],
         'type': 'number',
-        'default': 0.05,
     },
     alpha = {
         'name': 'alpha',
@@ -439,7 +440,7 @@ class PyPower:
             else:
                 assert 'default' in meta, ValueError(f'Lack of Parameter <{pname}>')
                 pdata[pname] = meta['default']
-                
+        print('pdata:', pdata)
         func = getattr(package, funcName.replace('.', '_'))
         r = func(**pdata)
         ss = None
@@ -450,14 +451,11 @@ class PyPower:
             raise ValueError(f'There is no key named [{ssName}] in the result')    
         return ss    
     
-    def plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
+    def _plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
         pk = self.name2package[name]
         funcName = self.name2function[name]
         paramMeta = self.parameters(name)
-        if pk == 'pwr':
-            package = pwr
-        elif pk == 'WebPower':
-            package = webpower
+        package = importr(pk)
         pdata = {}
         for meta in paramMeta:
             pname = meta['name']
@@ -465,24 +463,33 @@ class PyPower:
                 if 'enum' in meta:
                     assert params[pname] in meta['enum'], ValueError(f'{pname} value must be one of {meta["enum"]}')
                 pdata[pname] = params[pname]
+                if isinstance(pdata[pname], str) and meta['type'] == 'number':
+                    pdata[pname] = float(pdata[pname])
             elif pname in (xname, yname):
                 pass
             else:
                 assert 'default' in meta, ValueError(f'Lack of Parameter <{pname}>')
                 pdata[pname] = meta['default']
+            
         func = getattr(package, funcName.replace('.', '_'))
         maxLimit = xrange[1]
         xvalue = xrange[0]
         rows = []
+        
         while xvalue < maxLimit:
             pdata[xname] = xvalue
             xvalue += xstep
+            print('pdata:', pdata)
             r = func(**pdata)
             res = {}
             for k, v in r.items():
                 res[k] = v[0]
             rows.append(res)
         return rows
+    
+    def plotData(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01):
+        with conversion.localconverter(default_converter):
+            return self._plotData(name, params, xname, yname, xrange, xstep)
 
     def plot(self, name, params: dict, xname: str=None, yname: str=None, xrange=None, xstep=0.01)->go.Figure:
         plotData = self.plotData(name, params, xname, yname, xrange, xstep)
